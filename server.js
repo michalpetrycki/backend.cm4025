@@ -1,11 +1,17 @@
 // Load the express package and create our app
 var express = require('express');
 var app = express();
+const path = require('path'); 
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8000;
 
 // Set the port based on environment
 var port = PORT;
+
+app.use(express.static(path.join(__dirname, 'dist/')));
+app.get('*', (req, res) =>{
+    res.sendFile(path.join(__dirname, '../CM4025-frontend/dist/index.html'));
+});
 
 // Send index.html file to the user for the home page
 app.get('/', function(req, res){
