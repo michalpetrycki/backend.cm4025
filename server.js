@@ -10,7 +10,7 @@ var port = PORT;
 
 app.use(express.static(path.join(__dirname, 'dist/')));
 app.get('*', (req, res) =>{
-    res.sendFile(path.join(__dirname, '../CM4025-frontend/dist/index.html'));
+    res.sendFile(path.join(__dirname, '../../frontend/CM4025-frontend/dist/index.html'));
 });
 
 // Send index.html file to the user for the home page
