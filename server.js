@@ -8,7 +8,8 @@ const PORT = process.env.PORT || 8000;
 // Set the port based on environment
 var port = PORT;
 
-app.use(express.static(path.join(__dirname, 'dist/')));
+app.use(express.static(path.join(__dirname, '../../frontend/CM4025-frontend/dist/')));
+console.log(__dirname);
 app.get('*', (req, res) =>{
     res.sendFile(path.join(__dirname, '../../frontend/CM4025-frontend/dist/index.html'));
 });
