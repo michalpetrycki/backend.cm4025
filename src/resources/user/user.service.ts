@@ -31,7 +31,7 @@ class UserService{
     public async login(email: string, password: string): Promise<Error | string>{
         try {
             
-            const newUser = await this.user.findOne({ email })    ;
+            const newUser = await this.user.findOne({ email });
 
             if (!newUser){
                 throw new Error('Unable to find user with that Email Address');
