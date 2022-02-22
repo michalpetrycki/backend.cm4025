@@ -31,7 +31,7 @@ class UserController implements Controller {
             this.login
         );
 
-        this.router.get(`${this.path}`, authenticated, this.getUser);
+        this.router.get(`${this.path}`, authenticated, this.getUsers);
 
     }
 
@@ -72,13 +72,29 @@ class UserController implements Controller {
 
     };
 
-    private getUser = (req: Request, res: Response, next: NextFunction): Response | void => {
+    // private getUser = (req: Request, res: Response, next: NextFunction): Response | void => {
 
-        if (!req.user){
-            return next(new HttpException(404, 'No logged in user'));
+    //     if (!req.user){
+    //         return next(new HttpException(404, 'No logged in user'));
+    //     }
+
+    //     res.status(200).json({ user: req.user });
+
+    // };
+
+    private getUsers = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+
+        try{
+
+            const users = await this.UserService.getUsers();
+
+            // Status is ok 200 as nothing has been created
+            res.status(200).json({ users });
+
         }
-
-        res.status(200).json({ user: req.user });
+        catch (error: any) {
+            next(new HttpException(400, error.message));
+        }
 
     };
 

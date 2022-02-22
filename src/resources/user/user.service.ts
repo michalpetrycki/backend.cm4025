@@ -1,5 +1,6 @@
 import UserModel from '@/resources/user/user.model';
 import token from '@/utils/token';
+import User from './user.interface';
 
 class UserService{
     
@@ -49,6 +50,25 @@ class UserService{
             throw new Error('Unable to login user');
         }
     }
+
+    public async getUsers(): Promise <Error | User[]>{
+
+        try{
+
+            const users = await this.user.find({});
+
+            if (!users){
+                throw new Error('There are no users');
+            }
+
+            return users;
+
+        }
+        catch (error){
+            throw new Error('Unable to get users');
+        }
+
+    };
 
 }
 

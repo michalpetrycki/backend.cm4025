@@ -6,7 +6,7 @@ import HttpException from '@/utils/exceptions/http.exception';
 import jwt from 'jsonwebtoken';
 
 async function authenticatedMiddleware(req: Request, res: Response, next: NextFunction): Promise<Response | void>{
-    
+
     const bearer = req.headers.authorization;
 
     if (!bearer || !bearer.startsWith('Bearer ')){
