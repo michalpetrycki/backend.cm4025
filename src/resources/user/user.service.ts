@@ -56,11 +56,6 @@ class UserService{
         try{
 
             const users = await this.user.find({});
-
-            if (!users){
-                throw new Error('There are no users');
-            }
-
             return users;
 
         }

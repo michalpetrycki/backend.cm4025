@@ -31,6 +31,7 @@ class UserController implements Controller {
             this.login
         );
 
+        this.router.get(`${this.path}/current`, authenticated, this.getUser);
         this.router.get(`${this.path}`, authenticated, this.getUsers);
 
     }
@@ -57,7 +58,7 @@ class UserController implements Controller {
     private login = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
 
         try {
-        
+
             const { email, password } = req.body;
 
             const token = await this.UserService.login(email, password);
@@ -72,15 +73,15 @@ class UserController implements Controller {
 
     };
 
-    // private getUser = (req: Request, res: Response, next: NextFunction): Response | void => {
+    private getUser = (req: Request, res: Response, next: NextFunction): Response | void => {
 
-    //     if (!req.user){
-    //         return next(new HttpException(404, 'No logged in user'));
-    //     }
+        if (!req.user){
+            return next(new HttpException(404, 'No logged in user'));
+        }
 
-    //     res.status(200).json({ user: req.user });
+        res.status(200).json({ user: req.user });
 
-    // };
+    };
 
     private getUsers = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
 
@@ -88,8 +89,18 @@ class UserController implements Controller {
 
             const users = await this.UserService.getUsers();
 
-            // Status is ok 200 as nothing has been created
-            res.status(200).json({ users });
+            if (Array.isArray(users) && users.length > 0){
+
+                // Status is ok 200 as nothing has been created
+                res.status(200).json({ users });
+
+            }
+            else if (Array.isArray(users) && users.length === 0){
+
+                // Status 204 - No content
+                res.status(204).json()
+
+            }
 
         }
         catch (error: any) {
