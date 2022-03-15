@@ -47,7 +47,7 @@ class UserService{
 
         } 
         catch (error) {
-            throw new Error('Unable to login user');
+            throw new Error('Unable to login user. ' + error);
         }
     }
 

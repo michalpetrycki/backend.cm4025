@@ -53,10 +53,26 @@ class App{
 
         const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH } = process.env;
 
+        console.log('connecting to:');
+        console.log( `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`);
+
         mongoose.connect(
-            // `mongodb://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`
+            // AtlasDB
+            // `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`
+            // Local DB
             `mongodb://${MONGO_PATH}`
-        );
+            ,
+            {
+                serverSelectionTimeoutMS: 10000,
+                socketTimeoutMS: 45000
+            }
+        )
+        .then(() => {
+            console.log('connected to database');
+        })
+        .catch((error) => {
+            console.log('error during connecting to database: error =>' + error);
+        });
 
     }
 
