@@ -53,8 +53,8 @@ class App{
 
         const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH } = process.env;
 
-        console.log('connecting to:');
-        console.log( `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`);
+        console.log(`connecting to: ${MONGO_PATH}`);
+        console.log('abcd');
 
         mongoose.connect(
             // AtlasDB

@@ -42,7 +42,6 @@ class UserController implements Controller {
         
             const { username, email, password, role } = req.body;
 
-            // Role here is hardcoded
             const token = await this.UserService.register(username, email, password, role);
 
             // 201 if something is created
