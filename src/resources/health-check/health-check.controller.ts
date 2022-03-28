@@ -1,4 +1,4 @@
-import Controller from "@/utils/interfaces/controller.interface";
+import Controller from '@/utils/interfaces/controller.interface';
 import { Router, Request, Response, NextFunction } from 'express';
 
 class HealthCheckController implements Controller{
