@@ -1,11 +1,12 @@
 import UserSeed from '../seed/interfaces/user.seed.interface';
-import UserModel from '@/resources/user/user.model';
 import Users from '../seed/data/user.seed.data';
-import bcrypt from 'bcrypt';
+import UserService from '@/resources/user/user.service';
+import userModel from '@/resources/user/user.model';
 
 class SeedDatabase{
 
-    private userModel = UserModel;
+    private userService = new UserService();
+    private userModel = userModel;
 
     constructor(){}
 
@@ -26,16 +27,9 @@ class SeedDatabase{
 
                     const envPassword = username === 'admin' ? process.env.ADMIN_INIT_PASS : process.env.USER_INIT_PASS;
 
-                    const hash = await bcrypt.hash(envPassword!.toString(), 10);
-                    
-                    const createdUser = await this.userModel.create({
-                        username,
-                        email,
-                        hash,
-                        role
-                    });
+                    const token = await this.userService.register(username, email, password, role);
 
-                    console.log(createdUser);
+                    console.log(token);
 
                     console.log(`New user to insert: ${newUser}`);
                     

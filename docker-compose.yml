@@ -16,7 +16,7 @@ services:
     image: mongo:latest
     restart: always
     ports:
-      - "27018:27017"
+      - "27017:27017"
     volumes:
       - data1:/data/db
       - config1:/data/configdb
