@@ -6,9 +6,9 @@ This branch contains code responsible for WebAPI for CM4025 coursework.
 
 It's written using typescript. It uses mongoose for communication with mongodb, express + morgan as middleware, jwtwebtoken for authentication and docker for containerization.
 
-If you'd like to use docker, first make sure it is installed on your machine. Then from the app directory, where Dockerfile sits, run ```docker-compose build``` to build the container and then ```docker-compose up``` to run container. Docker container has own volume for storing database data. \
+If you'd like to use docker, first make sure it is installed on your machine. Then from the app directory, where Dockerfile sits, run ```docker-compose build``` to build the container and then ```docker-compose up``` to run container. Docker container has own volume for storing database data.
 
-If you'd like to run it without docker, first run ```npm install``` from app directory and then ```npm run dev```. Any changes made to typescript files while code is running will be automatically updated and project will re-run itself. \
+If you'd like to run it without docker, first run ```npm install``` from app directory and then ```npm run dev```. Any changes made to typescript files while code is running will be automatically updated and project will re-run itself.
 
 The API contians /health endpoint which can be used to check if API is working properly. To call it go to web browser or use postman or curl: \
 ```http://localhost:8000/api/health``` if ran locally \
