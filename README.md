@@ -29,7 +29,7 @@ For different actions different HTTP methods are used: \
 ```POST``` - ccepts resource, processes it and returns it on success. \
 ```PUT``` - \
 ```PATCH``` - \
-```DELETE``` - delete resources with given id / attribute. \
+```DELETE``` - delete resources with given id / attribute.
 
 For setting environmental variables create .env file and provide values for: \
 ```NODE_ENV``` - if ```development``` used, there is an extra step for seeding database on first run. \
