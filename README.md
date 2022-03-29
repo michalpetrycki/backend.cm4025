@@ -2,9 +2,9 @@
 Enterprise Web Systems \
 Backend branch \
 \
-This branch contains code responsible for WebAPI for CM4025 coursework. \
+This branch contains code responsible for WebAPI for CM4025 coursework.
 
-It's written using typescript. It uses mongoose for communication with mongodb, express + morgan as middleware, jwtwebtoken for authentication and docker for containerization. \
+It's written using typescript. It uses mongoose for communication with mongodb, express + morgan as middleware, jwtwebtoken for authentication and docker for containerization.
 
 If you'd like to use docker, first make sure it is installed on your machine. Then from the app directory, where Dockerfile sits, run ```docker-compose build``` to build the container and then ```docker-compose up``` to run container. Docker container has own volume for storing database data. \
 
