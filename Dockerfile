@@ -10,6 +10,4 @@ RUN npm ci
 
 EXPOSE 8000
 
-# ENTRYPOINT [ "npm", "run" ]
-
 CMD ["npm", "run"]
