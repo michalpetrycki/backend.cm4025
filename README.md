@@ -31,14 +31,14 @@ For different actions different HTTP methods are used:
 ```PATCH``` - 
 ```DELETE``` - delete resources with given id / attribute.
 
-For setting environmental variables create .env file and provide values for:
-```NODE_ENV``` - if ```development``` used, there is an extra step for seeding database on first run.
-```PORT``` - port where Web API will be operating 
-```MONGO_PATH=0.0.0.0:27017/{database_name}``` - if database in local environment, no Docker, is used
-```MONGO_PATH=mongo:27017/{datbase_name}``` - if database in docker environment will be used
-```MONGO_PATH=@cluster0.gvfeg.mongodb.net/{database_name}``` - if mongo atlas db will be used
-```MONGO_USER``` - username for atlas mongo connection
-```MONGO_PASSWORD``` - password for atlas mongo connection
-```JWT_SECRET``` - web token secret used for hashing
-```ADMIN_INIT_PASS``` - optional; used as password for admin account during initial database seeding
-```USER_INIT_PASS``` - optional; used as password for regulat user account during initial database seeding
+For setting environmental variables create .env file and provide values for: \
+```NODE_ENV``` - if ```development``` used, there is an extra step for seeding database on first run. \
+```PORT``` - port where Web API will be operating \
+```MONGO_PATH=0.0.0.0:27017/{database_name}``` - if database in local environment, no Docker, is used \
+```MONGO_PATH=mongo:27017/{datbase_name}``` - if database in docker environment will be used \
+```MONGO_PATH=@cluster0.gvfeg.mongodb.net/{database_name}``` - if mongo atlas db will be used \
+```MONGO_USER``` - username for atlas mongo connection \
+```MONGO_PASSWORD``` - password for atlas mongo connection \
+```JWT_SECRET``` - web token secret used for hashing \
+```ADMIN_INIT_PASS``` - optional; used as password for admin account during initial database seeding \
+```USER_INIT_PASS``` - optional; used as password for regulat user account during initial database seeding \
