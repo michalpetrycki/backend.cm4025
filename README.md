@@ -41,4 +41,4 @@ For setting environmental variables create .env file and provide values for: \
 ```MONGO_PASSWORD``` - password for atlas mongo connection \
 ```JWT_SECRET``` - web token secret used for hashing \
 ```ADMIN_INIT_PASS``` - optional; used as password for admin account during initial database seeding \
-```USER_INIT_PASS``` - optional; used as password for regulat user account during initial database seeding \
+```USER_INIT_PASS``` - optional; used as password for regulat user account during initial database seeding
