@@ -21,14 +21,15 @@ class PostController implements Controller {
             validationMiddleware(validate.create),
             this.create
         );
+        this.router.get(`${this.path}`, this.getPosts);
     }
 
     private create = async(req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             
-            const { title, body } = req.body;
+            const { authorId, content } = req.body;
 
-            const post = await this.PostService.create(title, body);
+            const post = await this.PostService.create(authorId, content);
 
             res.status(201).json({ post });
 
@@ -36,6 +37,32 @@ class PostController implements Controller {
         catch (error) {
             next(new HttpException(400, 'Cannot create post'));
         }
+    }
+
+    private getPosts = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+
+        try{
+
+            const posts = await this.PostService.getPosts();
+
+            if (Array.isArray(posts) && posts.length > 0){
+
+                // Status is ok 200 as nothing has been created
+                res.status(200).json({ posts });
+
+            }
+            else if (Array.isArray(posts) && posts.length === 0){
+
+                // Status 204 - No content
+                res.status(204).json()
+
+            }
+
+        }
+        catch (error: any) {
+            next(new HttpException(400, error.message));
+        }
+
     }
 
 }

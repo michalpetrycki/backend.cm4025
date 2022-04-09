@@ -31,6 +31,7 @@ UserSchema.pre<User>('save', async function (next) {
         return next();
     }
 
+    // Creates salt and hash at the same time
     const hash = await bcrypt.hash(this.password, 10);
 
     this.password = hash;

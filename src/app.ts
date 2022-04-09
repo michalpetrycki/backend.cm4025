@@ -58,9 +58,9 @@ class App{
 
         mongoose.connect(
             // AtlasDB
-            // `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`
+            `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}`
             // Local DB
-            `mongodb://${MONGO_PATH}`
+            // `mongodb://${MONGO_PATH}`
             ,
             {
                 serverSelectionTimeoutMS: 10000,

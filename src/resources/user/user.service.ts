@@ -63,7 +63,7 @@ class UserService{
             throw new Error('Unable to get users');
         }
 
-    };
+    }
 
 }
 

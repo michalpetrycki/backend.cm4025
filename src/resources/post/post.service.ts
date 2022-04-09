@@ -8,11 +8,11 @@ class PostService{
     /**
      * Create a new post
      */
-    public async create(title: string, body: string): Promise<Post>{
+    public async create(authorId: string, content: string): Promise<Post> {
 
         try {
-            
-            const post = await this.post.create({ title, body });
+
+            const post = await this.post.create({ title: 'abcd', authorId, content });
 
             return post;
             
@@ -22,6 +22,20 @@ class PostService{
         }
 
     }
+
+    public async getPosts(): Promise <Error | Post[]> {
+
+        try{
+
+            const posts = await this.post.find({});
+            return posts;
+
+        }
+        catch (error){
+            throw new Error('Unable to get posts');
+        }
+
+    };
 
 }
 
