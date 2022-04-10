@@ -4,6 +4,7 @@ import HttpException from '@/utils/exceptions/http.exception';
 import validationMiddleware from '@/middleware/validation.middleware';
 import validate from '@/resources/post/post.validation';
 import PostService from '@/resources/post/post.service';
+import { isValidObjectId } from 'mongoose';
 
 class PostController implements Controller {
 
@@ -21,7 +22,9 @@ class PostController implements Controller {
             validationMiddleware(validate.create),
             this.create
         );
-        this.router.get(`${this.path}`, this.getPosts);
+        this.router.get(`${this.path}`, this.getAll);
+        this.router.patch(`${this.path}`, this.update);
+        this.router.delete(`${this.path}`, this.delete);
     }
 
     private create = async(req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
@@ -39,11 +42,11 @@ class PostController implements Controller {
         }
     }
 
-    private getPosts = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    private getAll = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
 
         try{
 
-            const posts = await this.PostService.getPosts();
+            const posts = await this.PostService.getAll();
 
             if (Array.isArray(posts) && posts.length > 0){
 
@@ -63,6 +66,76 @@ class PostController implements Controller {
             next(new HttpException(400, error.message));
         }
 
+    }
+
+    private update = async(req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            
+            const { _id, title, authorId, content } = req.body;
+
+            const post = await this.PostService.update(_id, title, authorId, content);
+
+            res.status(201).json({ post });
+
+        } 
+        catch (error) {
+            next(new HttpException(400, 'Cannot update post'));
+        }
+    }
+
+    private delete = async(req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+
+            const { _id } = req.body;
+
+            if (isValidObjectId(_id)){
+
+                const deletedPost = await this.PostService.delete(_id);
+                
+                if (deletedPost){
+
+                    // For delete use 200 (OK) or 204 (no content success - recommended)
+                    res.status(204).json();
+
+                }
+                else {
+
+                    // Nothing with that id found - no resource
+                    res.status(404);
+
+                }
+             
+            }
+            else{
+
+                console.log('not valid');
+
+                const post = await this.PostService.get(_id);
+
+                // If object with given id exists
+                if (post){
+
+                    console.log('exists');
+
+                    // Badrequest - as there's an issues with passed _id property
+                    res.status(400);
+
+                }
+                else {
+
+                    console.log('doesnt');
+
+                    // Nothing with that id found - no resource
+                    res.status(404);
+
+                }
+
+            }
+
+        } 
+        catch (error) {
+            next(new HttpException(400, 'Cannot delete post'));
+        }
     }
 
 }
