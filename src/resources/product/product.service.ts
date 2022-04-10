@@ -8,10 +8,13 @@ class ProductService {
     /**
      * Create a new product
      */
-    public async create(name: string, category: string, price:string, rating: number, quantity: number, inventoryStatus: string): Promise<Product> {
+    public async create(name: string, category: string, price: string, rating: number, quantity: number, inventoryStatus: string): Promise<Product> {
 
         try {
 
+            console.log(rating);
+            console.log(quantity);
+            console.log(inventoryStatus);
             const product = await this.product.create({ name, category, price, rating, quantity, inventoryStatus });
 
             return product;

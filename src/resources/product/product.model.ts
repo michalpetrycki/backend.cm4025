@@ -29,7 +29,7 @@ const ProductSchema = new Schema({
     },
     inventoryStatus: {
         type: String,
-        required: true
+        required: false
     }
 
 }, { timestamps: true });

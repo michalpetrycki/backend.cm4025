@@ -36,6 +36,10 @@ class ProductController implements Controller {
             
             const { name, category, price, rating, quantity, inventoryStatus } = req.body;
 
+            console.log(rating);
+            console.log(quantity);
+            console.log(inventoryStatus);
+
             const product = await this.ProductService.create(name, category, price, rating, quantity, inventoryStatus);
 
             res.status(201).json({ product });
