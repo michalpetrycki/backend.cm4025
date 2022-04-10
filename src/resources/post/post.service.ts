@@ -32,13 +32,13 @@ class PostService{
 
         try {
 
-            const post = await this.post.findOneAndUpdate({ _id: _id }, { $set: { title: 'abcd', content }}, { upsert: true, returnDocuemnt: 'after' });
+            const post = await this.post.findOneAndUpdate({ _id: _id }, { $set: { title, authorId, content }}, { upsert: true, returnDocuemnt: 'after' });
 
             return post;
             
         } 
         catch (error) {
-            throw new Error('Unable to create post');
+            throw new Error('Unable to update post');
         }
 
     }
@@ -53,13 +53,13 @@ class PostService{
             return post;
         } 
         catch (error) {
-            throw new Error('Unable to create post');
+            throw new Error('Unable to delete post');
         }
 
     }
 
     /**
-     * Remove given post
+     * Get post by id
     */
      public async get(_id: string): Promise<Post | null> {
 

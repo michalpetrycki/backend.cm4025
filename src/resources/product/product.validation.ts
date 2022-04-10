@@ -2,9 +2,9 @@ import Joi from 'joi';
 
 const create = Joi.object({
 
-    title: Joi.string().required(),
-    authorId: Joi.string().required(),
-    content: Joi.string().required()
+    name: Joi.string().required(),
+    category: Joi.string().required(),
+    price: Joi.string().required()
 
 });
 

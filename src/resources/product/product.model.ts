@@ -3,15 +3,31 @@ import Product from '@/resources/product/product.interface';
 
 const ProductSchema = new Schema({
 
-    authorId: {
+    name: {
         type: String,
         required: true
     },
-    title: {
+    category: {
         type: String,
         required: true
     },
-    content:{
+    price: {
+        type: String,
+        required: true
+    },
+    imagePath: {
+        type: String,
+        required: false
+    },
+    rating: {
+        type: Number,
+        required: false
+    },
+    quantity: {
+        type: Number,
+        required: false
+    },
+    inventoryStatus: {
         type: String,
         required: true
     }

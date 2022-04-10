@@ -108,22 +108,16 @@ class PostController implements Controller {
             }
             else{
 
-                console.log('not valid');
-
                 const post = await this.PostService.get(_id);
 
                 // If object with given id exists
                 if (post){
-
-                    console.log('exists');
 
                     // Badrequest - as there's an issues with passed _id property
                     res.status(400);
 
                 }
                 else {
-
-                    console.log('doesnt');
 
                     // Nothing with that id found - no resource
                     res.status(404);

@@ -8,11 +8,11 @@ class ProductService {
     /**
      * Create a new product
      */
-    public async create(authorId: string, content: string): Promise<Product> {
+    public async create(name: string, category: string, price:string, rating: number, quantity: number, inventoryStatus: string): Promise<Product> {
 
         try {
 
-            const product = await this.product.create({ title: 'abcd', authorId, content });
+            const product = await this.product.create({ name, category, price, rating, quantity, inventoryStatus });
 
             return product;
             
@@ -23,7 +23,54 @@ class ProductService {
 
     }
 
-    public async getProducts(): Promise <Error | Product[]> {
+    /**
+     * Update given product
+    */
+     public async update(_id: string, name: string, category: string, price: string, rating: number, quantity: number, inventoryStatus: string): Promise<Product | null> {
+
+        try {
+
+            const product = await this.product.findOneAndUpdate({ _id: _id }, { $set: { name, category, price, rating, quantity, inventoryStatus }}, { upsert: true, returnDocuemnt: 'after' });
+            return product;
+            
+        } 
+        catch (error) {
+            throw new Error('Unable to update product');
+        }
+
+    }
+
+    /**
+     * Remove given product
+    */
+     public async delete(_id: string): Promise<Product | null> {
+
+        try {
+            const product = await this.product.findOneAndDelete({ _id: _id });
+            return product;
+        } 
+        catch (error) {
+            throw new Error('Unable to delete product');
+        }
+
+    }
+
+    /**
+     * Get product by id
+    */
+     public async get(_id: string): Promise<Product | null> {
+
+        try {
+            const product = await this.product.findById({ _id: _id });
+            return product;
+        } 
+        catch (error) {
+            throw new Error('Unable to create product');
+        }
+
+    }
+
+    public async getAll(): Promise <Error | Product[]> {
 
         try{
 
