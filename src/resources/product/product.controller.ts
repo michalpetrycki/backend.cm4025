@@ -25,9 +25,9 @@ class ProductController implements Controller {
             validationMiddleware(validate.create),
             this.create
         );
-        this.router.get(`${this.path}`, this.getAll);
-        this.router.patch(`${this.path}`, this.update);
-        this.router.delete(`${this.path}`, this.delete);
+        this.router.get(`${this.path}`, authenticated, this.getAll);
+        this.router.patch(`${this.path}`, authenticated, this.update);
+        this.router.delete(`${this.path}`, authenticated, this.delete);
 
     }
 
@@ -35,11 +35,6 @@ class ProductController implements Controller {
         try {
             
             const { name, category, price, rating, quantity, inventoryStatus } = req.body;
-
-            console.log(rating);
-            console.log(quantity);
-            console.log(inventoryStatus);
-
             const product = await this.ProductService.create(name, category, price, rating, quantity, inventoryStatus);
 
             res.status(201).json({ product });

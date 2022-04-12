@@ -4,6 +4,7 @@ import HttpException from '@/utils/exceptions/http.exception';
 import validationMiddleware from '@/middleware/validation.middleware';
 import validate from '@/resources/post/post.validation';
 import PostService from '@/resources/post/post.service';
+import authenticated from '@/middleware//authenticated.middleware';
 import { isValidObjectId } from 'mongoose';
 
 class PostController implements Controller {
@@ -23,8 +24,8 @@ class PostController implements Controller {
             this.create
         );
         this.router.get(`${this.path}`, this.getAll);
-        this.router.patch(`${this.path}`, this.update);
-        this.router.delete(`${this.path}`, this.delete);
+        this.router.patch(`${this.path}`, authenticated, this.update);
+        this.router.delete(`${this.path}`, authenticated, this.delete);
     }
 
     private create = async(req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
