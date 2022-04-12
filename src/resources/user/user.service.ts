@@ -65,6 +65,24 @@ class UserService{
 
     }
 
+    /**
+     * Update given user
+    */
+     public async update(_id: string, propertyToEdit1: string, propertyToEdit2: string, propertyToEdit3: string, propertyToEdit4: string): Promise<User | null> {
+
+        try {
+
+            // For some reason it returns document before update
+            const user = await this.user.findOneAndUpdate({ _id: _id }, { $set: { propertyToEdit1, propertyToEdit2, propertyToEdit3, propertyToEdit4 }}, { upsert: true, returnDocuemnt: 'after' });
+            return user;
+            
+        } 
+        catch (error) {
+            throw new Error('Unable to update user');
+        }
+
+    }
+
 }
 
 export default UserService;

@@ -33,6 +33,7 @@ class UserController implements Controller {
 
         this.router.get(`${this.path}/current`, authenticated, this.getUser);
         this.router.get(`${this.path}`, authenticated, this.getUsers);
+        this.router.patch(`${this.path}`, authenticated, this.update);
 
     }
 
@@ -52,7 +53,7 @@ class UserController implements Controller {
             next(new HttpException(400, error.message));
         }
 
-    };
+    }
 
     private login = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
 
@@ -70,7 +71,7 @@ class UserController implements Controller {
             next(new HttpException(400, error.message));
         }
 
-    };
+    }
 
     private getUser = (req: Request, res: Response, next: NextFunction): Response | void => {
 
@@ -80,7 +81,7 @@ class UserController implements Controller {
 
         res.status(200).json({ user: req.user });
 
-    };
+    }
 
     private getUsers = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
 
@@ -106,7 +107,21 @@ class UserController implements Controller {
             next(new HttpException(400, error.message));
         }
 
-    };
+    }
+
+    private update = async(req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+        try {
+            
+            const { _id, propertyToEdit1, propertyToEdit2, propertyToEdit3, propertyToEdit4 } = req.body;
+            const user = await this.UserService.update(_id, propertyToEdit1, propertyToEdit2, propertyToEdit3, propertyToEdit4);
+
+            res.status(200).json({ user });
+
+        } 
+        catch (error) {
+            next(new HttpException(400, 'Cannot update user'));
+        }
+    }
 
 }
 

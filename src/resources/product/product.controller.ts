@@ -78,7 +78,7 @@ class ProductController implements Controller {
 
             const post = await this.ProductService.update(_id, name, category, price, rating, quantity, inventoryStatus);
 
-            res.status(201).json({ post });
+            res.status(200).json({ post });
 
         } 
         catch (error) {

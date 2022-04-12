@@ -21,6 +21,22 @@ const UserSchema = new Schema({
     role: {
         type: String,
         required: true
+    },
+    propertyToEdit1: {
+        type: String,
+        required: false
+    },
+    propertyToEdit2: {
+        type: String,
+        required: false
+    },
+    propertyToEdit3: {
+        type: String,
+        required: false
+    },
+    propertyToEdit4: {
+        type: String,
+        required: false
     }
 
 }, { timestamps: true });

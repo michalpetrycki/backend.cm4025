@@ -76,7 +76,7 @@ class PostController implements Controller {
 
             const post = await this.PostService.update(_id, title, authorId, content);
 
-            res.status(201).json({ post });
+            res.status(200).json({ post });
 
         } 
         catch (error) {
