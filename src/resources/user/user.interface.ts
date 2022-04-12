@@ -10,6 +10,7 @@ export default interface User extends Document {
     propertyToEdit2: string;
     propertyToEdit3: string;
     propertyToEdit4: string;
+    imageUrl: string;
 
     isValidPassword(password: string): Promise<Error | boolean>;
     

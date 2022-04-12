@@ -8,11 +8,11 @@ class ProductService {
     /**
      * Create a new product
      */
-    public async create(name: string, category: string, price: number, rating: number, quantity: number, inventoryStatus: string): Promise<Product> {
+    public async create(name: string, category: string, price: number, rating: number, quantity: number, inventoryStatus: string, imagePath: string): Promise<Product> {
 
         try {
 
-            const product = await this.product.create({ name, category, price, rating, quantity, inventoryStatus });
+            const product = await this.product.create({ name, category, price, rating, quantity, inventoryStatus, imagePath });
             return product;
             
         } 
@@ -25,11 +25,11 @@ class ProductService {
     /**
      * Update given product
     */
-     public async update(_id: string, name: string, category: string, price: number, rating: number, quantity: number, inventoryStatus: string): Promise<Product | null> {
+     public async update(_id: string, name: string, category: string, price: number, rating: number, quantity: number, inventoryStatus: string, imagePath: string): Promise<Product | null> {
 
         try {
 
-            const product = await this.product.findOneAndUpdate({ _id: _id }, { $set: { name, category, price, rating, quantity, inventoryStatus }}, { upsert: true, returnDocuemnt: 'after' });
+            const product = await this.product.findOneAndUpdate({ _id: _id }, { $set: { name, category, price, rating, quantity, inventoryStatus, imagePath }}, { upsert: true, returnDocuemnt: 'after' });
             return product;
             
         } 

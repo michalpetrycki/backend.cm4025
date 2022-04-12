@@ -37,6 +37,10 @@ const UserSchema = new Schema({
     propertyToEdit4: {
         type: String,
         required: false
+    },
+    imageUrl: {
+        type: String,
+        required: false
     }
 
 }, { timestamps: true });

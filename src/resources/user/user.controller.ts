@@ -112,8 +112,8 @@ class UserController implements Controller {
     private update = async(req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             
-            const { _id, propertyToEdit1, propertyToEdit2, propertyToEdit3, propertyToEdit4 } = req.body;
-            const user = await this.UserService.update(_id, propertyToEdit1, propertyToEdit2, propertyToEdit3, propertyToEdit4);
+            const { _id, propertyToEdit1, propertyToEdit2, propertyToEdit3, propertyToEdit4, imageUrl } = req.body;
+            const user = await this.UserService.update(_id, propertyToEdit1, propertyToEdit2, propertyToEdit3, propertyToEdit4, imageUrl);
 
             res.status(200).json({ user });
 

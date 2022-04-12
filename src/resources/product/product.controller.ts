@@ -34,8 +34,8 @@ class ProductController implements Controller {
     private create = async(req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             
-            const { name, category, price, rating, quantity, inventoryStatus } = req.body;
-            const product = await this.ProductService.create(name, category, price, rating, quantity, inventoryStatus);
+            const { name, category, price, rating, quantity, inventoryStatus, imagePath } = req.body;
+            const product = await this.ProductService.create(name, category, price, rating, quantity, inventoryStatus, imagePath);
 
             res.status(201).json({ product });
 
@@ -74,9 +74,9 @@ class ProductController implements Controller {
     private update = async(req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
         try {
             
-            const { _id, name, category, price, rating, quantity, inventoryStatus } = req.body;
+            const { _id, name, category, price, rating, quantity, inventoryStatus, imagePath } = req.body;
 
-            const post = await this.ProductService.update(_id, name, category, price, rating, quantity, inventoryStatus);
+            const post = await this.ProductService.update(_id, name, category, price, rating, quantity, inventoryStatus, imagePath);
 
             res.status(200).json({ post });
 
